@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+build
+.DS_Store
+.vscode
+.netlify
+.note 
+.env
+.env_local

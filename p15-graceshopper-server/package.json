@@ -1,0 +1,33 @@
+{
+  "name": "p15-graceshopper-server",
+  "version": "1.0.0",
+  "description": "A dynamic server-based eCommerce application",
+  "main": "index.js",
+  "scripts": {
+    "seed:dev": "nodemon ./db/seed.js",
+    "seed": "node ./db/seed.js",
+    "start:dev": "nodemon --trace-warnings index.js",
+    "start": "node --trace-warnings index.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "postgresql",
+    "javascript"
+  ],
+  "author": "Jesslyn Bui",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3"
+  }
+}

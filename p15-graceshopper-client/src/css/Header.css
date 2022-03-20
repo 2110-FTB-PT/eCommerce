@@ -1,0 +1,146 @@
+/*---------------------------------------------------------------------------------
+Author:      Jesslyn Bui 
+Project-15:  Grace Shopper - eCommerce  
+----------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&display=swap');
+
+/*---header---*/
+.galary { 
+  display: grid; 
+  grid-template-columns: 250px 1fr; 
+} 
+
+/*---images---*/
+.logo { 
+  grid-column: 1;
+  margin: 20px; 
+  width: 200px; 
+  height: 200px; 
+  border-radius: 50%; 
+  border: 2px solid transparent;
+  box-shadow: 2px 2px lightgray; 
+} 
+.imggalary { 
+  grid-column: 2; 
+  height: 150px; 
+  width: 80vw; 
+
+  border-radius: 3px; 
+  border: 2px solid transparent;
+} 
+/*---login---*/
+.lognav {       
+  display: flex;
+  justify-content: space-between;
+
+  background-color: rgba(48, 22, 4, 0.89);   /*rgba(39, 4, 4, 0.89);*/
+  margin: 0; 
+  padding: 3px; 
+} 
+.loglink { 
+  padding: 3px; 
+} 
+.loglink:hover { 
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border: 1px solid #ccc;
+}
+.cart { 
+  margin: 0; 
+  width: 20px; 
+  height: max-content; 
+  align-self:stretch; 
+} 
+
+/*---ul---*/
+.navlist {
+  display: flex;
+  flex-direction: row; 
+
+  list-style-type: none;
+}
+.navlist a, .creditoffer {
+  font-family: 'Open Sans', sans-serif, 'Open Sans Condensed';
+  font-size: 16px;
+  color: white;
+} 
+.navlist a {
+  display: block;
+  text-decoration: none;
+
+  border-right: 2px solid #888;
+  margin: 0 5px; 
+  padding-right: 10px;
+}
+.horizontal.navlist li:last-of-type a { 
+  border-right: none; 
+}
+
+/*---search---*/
+.searchnav {
+  display: flex; 
+} 
+.searchform {
+  margin: 15px auto;  
+  display: flex;
+  flex: 1; 
+} 
+form {
+  margin-block-end: 1em;
+}
+input {
+  flex-grow: 1;
+
+  border: none; 
+  border-bottom: 1px solid rgba(39, 4, 4, 0.89);
+  padding-left: 10px;
+} 
+.searchicon {
+  display: inline-block; 
+  
+  font-family: 'Material Icons';
+  font-size: 28px;
+  text-transform: none;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+
+  background-color: rgba(48, 22, 4, 0.89);
+  color: white; 
+} 
+.searchicon:hover { 
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+} 
+.creditoffer {
+  margin: 15px auto;  
+  display: inline-block; 
+
+  text-align: center;
+  font-weight: bolder; 
+  background-color: goldenrod;   /* rgba(172, 112, 1, 0.938); */
+  border-color: darkgoldenrod; 
+ 
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;  
+  padding: 5px; 
+} 
+.creditoffer:hover { 
+  padding: 7px; 
+
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border-radius: 3%; 
+  border: 1px solid #ccc;
+} 
+@media (min-width: 768px) { 
+  .horizontal.navlist.shortwidth.fullwidth {
+    display: flex;
+  } 
+  .horizontal.navlist.shortwidth.shortwidth {
+    display: none;
+  } 
+}
