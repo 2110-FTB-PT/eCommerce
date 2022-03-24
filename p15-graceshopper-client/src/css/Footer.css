@@ -1,0 +1,44 @@
+/*---------------------------------------------------------------------------------
+Author:      Jesslyn Bui 
+Project-15:  Grace Shopper - eCommerce  
+----------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
+footer {
+  padding: 1rem; 
+
+  display: grid; 
+  justify-content: center;
+
+  background-color: #735744; 
+}  
+.footlink { 
+  grid-row: 1; 
+  margin-bottom: 30px;
+
+  text-align: center; 
+  text-decoration: none; 
+  font-family: 'Dosis', sans-serif;
+  letter-spacing: 3px; 
+  color: white; 
+} 
+.footlink:hover { 
+  padding: 3px; 
+
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border-radius: 3%; 
+  border: 1px solid #ccc;
+} 
+.copyright { 
+  grid-row: 2; 
+  padding: 5px;
+  
+  text-align: center; 
+  font-family: 'Dosis', sans-serif;
+  letter-spacing: 3px; 
+  color: white;
+  font-size: small; 
+} 

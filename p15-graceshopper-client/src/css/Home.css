@@ -1,0 +1,53 @@
+/*---------------------------------------------------------------------------------
+Author:      Jesslyn Bui 
+Project-15:  Grace Shopper - eCommerce  
+----------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+
+.home { 
+  margin: 30px; 
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  font-family: 'Stylish', sans-serif !important;
+  font-size: 22px;
+  font-weight: normal; 
+  line-height: 32px;
+} 
+.idemo { 
+  width: 400px; 
+  height: 300px; 
+  margin: 50px;
+
+  border-radius: 3%;  
+} 
+.cdemo { 
+  grid-column: 2; 
+  float: left; 
+} 
+.tdemo { 
+  grid-column: 1; 
+  float: right; 
+} 
+.coffee { 
+  grid-row: 1;
+  color: #735744;  
+  text-align: center; 
+}
+.tea { 
+  grid-row: 2;
+  color: rgba(78, 77, 13, 0.945);  
+  text-align: center; 
+} 
+.title { 
+  margin: 30px auto; 
+
+  font-size: 42px;
+  font-weight:bolder;
+} 
+.para { 
+  margin: auto 50px; 
+
+  display: block;
+} 
