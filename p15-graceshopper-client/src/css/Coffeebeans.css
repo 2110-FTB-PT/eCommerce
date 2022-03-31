@@ -20,28 +20,26 @@ Project-15:  Grace Shopper - eCommerce
   width: 250px; 
   height: 250px; 
 } 
-.itxt { 
+.cbform { 
   display: block; 
-  margin: 20px; 
+  margin: 10px 10px 10px 20px; 
   line-height: 32px; 
   font-family: 'Dosis', sans-serif;
   color:  #735744;
 }
-.inp { 
-  /* float: left;  */
-  /* display: block; */
-  width: 25px;
+.cbinp { 
+  width: 50px;
   height: 25px; 
-  margin: 10px; 
-  padding: 5px 10px; 
+  margin: 0 0 0 5px; 
+  padding: 5px; 
   border: 1px solid #735744; 
   border-radius: 3px; 
 
   line-height: normal; 
   font-size: 16px; 
 } 
-.inbtn { 
-  margin: 5px 0px; 
+.cbbtn { 
+  margin: 5px 5px 5px 10px; 
   padding: 10px; 
 
   background-color: darkgoldenrod; 
@@ -52,7 +50,7 @@ Project-15:  Grace Shopper - eCommerce
   text-transform: uppercase; 
   font-weight: bold; 
 } 
-.inbtn:hover { 
+.cbbtn:hover { 
   padding: 7px; 
 
   color: rgb(39, 4, 4); 

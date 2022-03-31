@@ -4,58 +4,68 @@ Project-15:  Grace Shopper - eCommerce
 ----------------------------------------------------------------------------------*/
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
-import React, { useState } from 'react'; 
+import React, { useState, useEffect, useContext } from 'react'; 
+import { cartReducer } from '../reducers'; 
 import { dak01, dak02, dak03, dak04, dak05, med06, med07, med08, med09, med10, 
   lgh11, lgh12, dcf13, mcf14, lcf15, org16
 } from '../img'; 
 import { 
-  Header, 
   Home,  
   Footer,
   Privacy,
+  Shopcart,
+  Header, 
   Coffeebeans, 
   Coffeesets,
   Tealeaves,
   Teasets,
+  Search,
   Login, 
   Buyers,
-  Search,
-  Shopcart,
   Nomatch,
+  StoreContext, 
+  ItempixContext,
+  ShopcartContext,
+  ProductsContext, 
+  CartitemsContext,
   MessageContext,
   LoginContext,
-  BuyerContext,
-  ShopcartContext,
-  ItempixContext,
-  ItemcountContext
+  BuyerContext
 } from './';  
 import '../css/App.css'; 
 
 
 const App = () => { 
-    //temp substitution of the Cloud storage 
+  const { store } = useContext(StoreContext); 
+  store.dispatch(cartReducer); 
+  const localcart = store.getState(); 
+  const [shopcart, setShopcart] = useState(localcart); 
   const [pics, setPics] = useState([ dak01, dak02, dak03, dak04, dak05, 
     med06, med07, med08, med09, med10, lgh11, lgh12, dcf13, mcf14, lcf15, org16 ]
   );
-  const [itemcount, setItemcount] = useState(0); 
+  const [products, setProducts] = useState([]); 
   const [message, setMessage] = useState(''); 
   const [login, setLogin] = useState(false); 
   const [buyer, setBuyer] = useState({username: 'Guest'}); 
-  const [shopcart, setShopcart] = useState([]); 
+  const itempixV = {pics, setPics}; 
+  const shopcartV = {shopcart, setShopcart}; 
+  const productsV = {products, setProducts}; 
   const messageV = {message, setMessage}; 
   const loginV = {login, setLogin}; 
   const buyerV = {buyer, setBuyer}; 
-  const shopcartV = {shopcart, setShopcart}; 
-  const itempixV = {pics, setPics}; 
-  const itemcountV = {itemcount, setItemcount}; 
+
+   
+  useEffect( () => { 
+    console.log('>>> AppEff-localcart',localcart,'shopcart',shopcart); 
+  }, []); 
 
   return <>
-    <MessageContext.Provider value={messageV}>
-      <LoginContext.Provider value={loginV}>
-        <BuyerContext.Provider value={buyerV}>
-          <ShopcartContext.Provider value={shopcartV}>
-            <ItempixContext.Provider value={itempixV}>
-              <ItemcountContext.Provider value={itemcountV}> 
+    <ItempixContext.Provider value={itempixV}>
+      <ShopcartContext.Provider value={shopcartV}>
+        <ProductsContext.Provider value={productsV}>
+          <MessageContext.Provider value={messageV}>
+            <LoginContext.Provider value={loginV}>  
+              <BuyerContext.Provider value={buyerV}>
               <BrowserRouter>
                 <Header />
                 <Routes>
@@ -73,12 +83,12 @@ const App = () => {
                 </Routes> 
                 <Footer /> 
               </BrowserRouter>
-              </ItemcountContext.Provider>
-            </ItempixContext.Provider>
-          </ShopcartContext.Provider>
-        </BuyerContext.Provider>
-      </LoginContext.Provider>
-    </MessageContext.Provider>
+              </BuyerContext.Provider>
+            </LoginContext.Provider>
+          </MessageContext.Provider>    
+        </ProductsContext.Provider>
+      </ShopcartContext.Provider>
+    </ItempixContext.Provider>
   </>
 } //App() 
 

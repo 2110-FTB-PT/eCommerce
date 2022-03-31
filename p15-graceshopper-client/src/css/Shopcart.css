@@ -5,7 +5,38 @@ Project-15:  Grace Shopper - eCommerce
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 
+.shopcart {
+  display: grid; 
+}
+.checkoutdiv { 
+  grid-row: 1; 
+  margin: 20px 100px; 
+}
+.checkoutbtn { 
+  float: right; 
+  margin: 5px 0px; 
+  padding: 10px; 
+  width: 200px; 
+
+  background-color:red; 
+  border: 1px solid rgb(218, 32, 32); 
+  border-radius: 3px; 
+  color: white; 
+  
+  text-transform: uppercase; 
+  font-weight: bold; 
+} 
+.checkoutbtn:hover { 
+  padding: 7px; 
+
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border-radius: 3%; 
+  border: 1px solid #ccc;
+}
 .page { 
+  grid-row: 2; 
   margin: 0 50px; 
   display: grid; 
   grid-template-columns: 25% 25% 25% 25%; 
@@ -20,28 +51,25 @@ Project-15:  Grace Shopper - eCommerce
   width: 250px; 
   height: 250px; 
 } 
-.itxt { 
+.cartform { 
   display: block; 
-  margin: 20px; 
+  margin: 10px 10px 10px 20px; 
   line-height: 32px; 
   font-family: 'Dosis', sans-serif;
   color:  #735744;
 }
-.inp { 
-  /* float: left;  */
-  /* display: block; */
-  width: 25px;
+.cartinp { 
+  width: 50px;
   height: 25px; 
-  margin: 10px; 
-  padding: 5px 10px; 
+  margin: 0 0 0 10px; 
+  padding: 5px; 
   border: 1px solid #735744; 
-  border-radius: 3px; 
 
   line-height: normal; 
   font-size: 16px; 
 } 
-.inbtn { 
-  margin: 5px 0px; 
+.cartbtn { 
+  margin: 5px 5px 5px 10px; 
   padding: 10px; 
 
   background-color: darkgoldenrod; 
@@ -52,7 +80,7 @@ Project-15:  Grace Shopper - eCommerce
   text-transform: uppercase; 
   font-weight: bold; 
 } 
-.inbtn:hover { 
+.cartbtn:hover { 
   padding: 7px; 
 
   color: rgb(39, 4, 4); 
@@ -60,4 +88,5 @@ Project-15:  Grace Shopper - eCommerce
 
   border-radius: 3%; 
   border: 1px solid #ccc;
-} 
+}  
+

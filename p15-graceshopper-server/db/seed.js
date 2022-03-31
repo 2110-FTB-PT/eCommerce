@@ -5,11 +5,11 @@ Project-15:  Grace Shopper - eCommerce
 
 const client = require('./client'); 
 const { 
-  addCoffeebeans 
+  addCoffeebeans
 } = require('./data'); 
-// const { 
-  
-// } = require('./coffeebeans'); 
+const { 
+  getCoffeebeans
+} = require('./coffeebeans'); 
 
 
 const dropTables = async () => {
@@ -137,7 +137,7 @@ const rebuildDB = async () => {
     await dropTables(); console.log('>>> done droptables');
     await createTables(); console.log('>>> done createtables'); 
     await addCoffeebeans(); console.log('>>> done addCoffeebeans data'); 
-     
+
   } catch (error) { 
     console.log('>>> rebuildb-catch',error); throw error; 
   } 
