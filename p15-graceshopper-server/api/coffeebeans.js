@@ -17,8 +17,9 @@ cbrouter.use('/', (req, res, next) => {
 //---routes 
 //GET /api/coffeebeans 
 cbrouter.get('/', async (req, res, next) => { 
+//return an array of coffeebeans items
   try { 
-    const cbdata = await getCoffeebeans(); 
+    const cbdata = await getCoffeebeans();
     res.send(cbdata); 
   } catch (error) { next(err); } 
 }); 

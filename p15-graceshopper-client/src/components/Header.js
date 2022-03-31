@@ -4,23 +4,17 @@ Project-15:  Grace Shopper - eCommerce
 ----------------------------------------------------------------------------------*/
 
 import { Link } from 'react-router-dom'; 
-import React, { useEffect } from 'react'; 
+import React, { useContext, useEffect } from 'react'; 
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import { FaSistrix } from 'react-icons/fa'; 
-import { 
-  Logo, 
-  Galary
-} from '../img/'; 
-import { 
-  ItemcountContext
-} from './';
+import { Logo, Galary } from '../img/'; 
+import { ShopcartContext } from './';
 import '../css/Header.css'; 
 
 
-const Header = ( props ) => { 
-  // const {itemcount, setItemcount} = useContext(ItemcountContext);
-  const itemcount = props.itemcount; 
+const Header = () => { 
+  const {shopcart} = useContext(ShopcartContext); 
   const newtab = () => { 
     const url = 'https://www.paypal.com/us/digital-wallet/ways-to-pay/buy-now-pay-later'; 
     const win = window.open(url, '_blank', 'noopener, noreferrer'); 
@@ -29,7 +23,8 @@ const Header = ( props ) => {
   } //newtab() 
 
   useEffect( () => { 
-  }, [itemcount] ); 
+    console.log('shopcart count',shopcart.itemscount); 
+  }, [shopcart]); 
 
   return <header>
     <nav className='lognav'>
@@ -44,7 +39,7 @@ const Header = ( props ) => {
         <li><Link className='loglink' to='/api/login'>Login/Signup</Link></li>
         <li><Link className='loglink' to='/api/buyers/me'>Account</Link></li>
         <li><Link className='loglink cart' to='/shopcart'>
-            <Badge color='secondary' badgeContent={itemcount}>
+            <Badge color='secondary' badgeContent={shopcart.itemscount}>
               <ShoppingCartIcon />{' '}
             </Badge>         
           </Link></li>  

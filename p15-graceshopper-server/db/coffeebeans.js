@@ -33,7 +33,8 @@ const getCoffeebeans = async () => {
   try { 
     const {rows: coffeebeans} = await client.query(` 
       SELECT * 
-      FROM coffeebeans; 
+      FROM coffeebeans 
+      WHERE qty > 0;  
     `); 
     return coffeebeans; 
   } catch (error) { throw error; } 

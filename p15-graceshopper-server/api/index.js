@@ -5,7 +5,7 @@ Project-15:  Grace Shopper - eCommerce
 
 //---imports 
 require('dotenv').config(); 
-const JWT_SECRET = process.env.JWT_SECRET; 
+const JWT_SECRET = process.env.JWT_SECRET || 'graceshopper'; 
 const jwt = require('jsonwebtoken'); 
 const express = require('express');  
 
