@@ -3,43 +3,21 @@ Author:      Jesslyn Bui
 Project-15:  Grace Shopper - eCommerce  
 ----------------------------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
 
 .shopcart {
   display: grid; 
 }
-.checkoutdiv { 
+.cartpage { 
   grid-row: 1; 
-  margin: 20px 100px; 
-}
-.checkoutbtn { 
-  float: right; 
-  margin: 5px 0px; 
-  padding: 10px; 
-  width: 200px; 
-
-  background-color:red; 
-  border: 1px solid rgb(218, 32, 32); 
-  border-radius: 3px; 
-  color: white; 
-  
-  text-transform: uppercase; 
-  font-weight: bold; 
-} 
-.checkoutbtn:hover { 
-  padding: 7px; 
-
-  color: rgb(39, 4, 4); 
-  background-color:navajowhite; 
-
-  border-radius: 3%; 
-  border: 1px solid #ccc;
-}
-.page { 
-  grid-row: 2; 
   margin: 0 50px; 
+  padding: 0 0 50px 0; 
   display: grid; 
   grid-template-columns: 25% 25% 25% 25%; 
+  border-bottom: 1px solid #735744; 
+
+  font-family: 'Alegreya Sans', sans-serif;
+  /* box-sizing: border-box; */
 } 
 .item { 
   display: flex;
@@ -55,22 +33,25 @@ Project-15:  Grace Shopper - eCommerce
   display: block; 
   margin: 10px 10px 10px 20px; 
   line-height: 32px; 
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 22px; 
   color:  #735744;
 }
 .cartinp { 
-  width: 50px;
-  height: 25px; 
-  margin: 0 0 0 10px; 
+  margin: 5px 10px; 
+  width: 60px;
+  height: 30px;  
   padding: 5px; 
   border: 1px solid #735744; 
+  border-radius: 3px; 
 
   line-height: normal; 
-  font-size: 16px; 
+  font-family:Verdana, Geneva, Tahoma, sans-serif; 
+  font-size: 20px; 
 } 
 .cartbtn { 
-  margin: 5px 5px 5px 10px; 
-  padding: 10px; 
+  margin: 5px 10px; 
+  padding: 10px 15px; 
 
   background-color: darkgoldenrod; 
   border: 1px solid goldenrod; 
@@ -78,6 +59,7 @@ Project-15:  Grace Shopper - eCommerce
   color: white; 
   
   text-transform: uppercase; 
+  font-size: 18px; 
   font-weight: bold; 
 } 
 .cartbtn:hover { 
@@ -89,4 +71,66 @@ Project-15:  Grace Shopper - eCommerce
   border-radius: 3%; 
   border: 1px solid #ccc;
 }  
+.checkoutdiv { 
+  grid-row: 2;
+  float: right; 
+}
+.cartsummary { 
+  float: right; 
+  margin: 50px; 
+  width: 400px; 
 
+  font-size: 22px; 
+  line-height: 32px; 
+  color:  #735744;
+} 
+.subtotal { 
+  float: right; 
+  margin-right: 50px;
+  font-size: 24px; 
+} 
+.price { 
+  float: right; 
+  padding: 0 15px 0 5px; 
+} 
+.checkoutlink {  
+  margin: 30px 0px 10px 0px; 
+  width: 95%; 
+  display: block;
+
+  background-color:red; 
+  border: 1px solid rgb(218, 32, 32); 
+  border-radius: 3px; 
+  color: white; 
+
+  font-family: "ProximaNovaReg", sans-serif;
+  font-size: 20px !important;
+  text-transform: uppercase; 
+  text-align: center;
+  text-decoration: none; 
+} 
+.shoplink {  
+  margin: 10px 0px; 
+  width: 95%; 
+  display: block;
+
+  background-color: darkgoldenrod; 
+  border: 1px solid goldenrod;
+  border-radius: 3px; 
+  color: white; 
+  
+  font-family: "ProximaNovaReg", sans-serif;
+  font-size: 20px !important;
+  text-transform: uppercase; 
+  text-align: center;
+  text-decoration: none; 
+} 
+.checkoutlink:hover .shoplink { 
+  padding: 7px; 
+
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border-radius: 3%; 
+  border: 1px solid #ccc;
+}

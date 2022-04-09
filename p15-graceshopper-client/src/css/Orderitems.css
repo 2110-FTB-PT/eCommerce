@@ -1,0 +1,24 @@
+/*---------------------------------------------------------------------------------
+Author:      Jesslyn Bui 
+Project-15:  Grace Shopper - eCommerce  
+----------------------------------------------------------------------------------*/
+
+
+.item { 
+  display: flex;
+  flex-direction: column;  
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+} 
+.iimg { 
+  width: 250px; 
+  height: 250px; 
+} 
+.orderform { 
+  display: block; 
+  margin: 10px 10px 10px 20px; 
+  line-height: 32px; 
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 22px; 
+  color:  #735744;
+}

@@ -3,6 +3,7 @@ Author:      Jesslyn Bui
 Project-15:  Grace Shopper - eCommerce  
 ----------------------------------------------------------------------------------*/
 
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&display=swap');
 
 /*---header---*/
@@ -23,8 +24,10 @@ Project-15:  Grace Shopper - eCommerce
 } 
 .imggalary { 
   grid-column: 2; 
-  height: 150px; 
-  width: 80vw; 
+  float: right;
+  margin: auto 2%; 
+  width: 95%;
+  height: 220px; 
 
   border-radius: 3px; 
   border: 2px solid transparent;
@@ -37,9 +40,12 @@ Project-15:  Grace Shopper - eCommerce
   background-color: rgba(48, 22, 4, 0.89);   /*rgba(39, 4, 4, 0.89);*/
   margin: 0; 
   padding: 3px; 
+
+  font-size: 24px; 
 } 
 .loglink { 
-  padding: 3px; 
+  padding: 10px; 
+  text-decoration: none; 
 } 
 .loglink:hover { 
   color: rgb(39, 4, 4); 
@@ -47,11 +53,21 @@ Project-15:  Grace Shopper - eCommerce
 
   border: 1px solid #ccc;
 }
+.cartlink { 
+  padding: 10px 30px 10px 10px; 
+} 
+.cartlink:hover { 
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border: 1px solid #ccc;
+}
 .cart { 
   margin: 0; 
-  width: 20px; 
+  width: 33px; 
   height: max-content; 
   align-self:stretch; 
+  font-size: 2rem; 
 } 
 
 /*---ul---*/
@@ -62,28 +78,25 @@ Project-15:  Grace Shopper - eCommerce
   list-style-type: none;
 }
 .navlist a, .creditoffer {
-  font-family: 'Open Sans', sans-serif, 'Open Sans Condensed';
-  font-size: 16px;
   color: white;
 } 
 .navlist a {
   display: block;
-  text-decoration: none;
 
   border-right: 2px solid #888;
   margin: 0 5px; 
   padding-right: 10px;
 }
-.horizontal.navlist li:last-of-type a { 
-  border-right: none; 
-}
 
 /*---search---*/
 .searchnav {
+  float: right;
+  margin: auto 2%; 
+  width: 95%;
   display: flex; 
 } 
 .searchform {
-  margin: 15px auto;  
+  margin: 15px;  
   display: flex;
   flex: 1; 
 } 
@@ -92,7 +105,6 @@ form {
 }
 input {
   flex-grow: 1;
-
   border: none; 
   border-bottom: 1px solid rgba(39, 4, 4, 0.89);
   padding-left: 10px;
@@ -114,18 +126,16 @@ input {
   background-color:navajowhite; 
 } 
 .creditoffer {
-  margin: 15px auto;  
+  margin: 15px 20px 15px 0;
+  padding: 0 15px; 
   display: inline-block; 
 
   text-align: center;
+  font-family: 'Stylish', sans-serif; 
+  font-size: 24px;
   font-weight: bolder; 
   background-color: goldenrod;   /* rgba(172, 112, 1, 0.938); */
   border-color: darkgoldenrod; 
- 
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 15px;  
-  padding: 5px; 
 } 
 .creditoffer:hover { 
   padding: 7px; 

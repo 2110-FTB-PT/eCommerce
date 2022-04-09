@@ -39,8 +39,14 @@ server.use( (err, req, res, next) => {
 
 
 //---server on 
-server.listen( PORT, () => { 
-  console.log('CORS enabled web server is listening on port: ', PORT); 
+server.listen( PORT, () => {  
+  console.log('CORS enabled web server is listening on port: ', PORT);  
   client.connect(); 
 }); 
 
+/*--------------------------------------------------------------------------------
+Test commands:
+ 1. good, '/' : 
+    curl https://p15-graceshopper-server.herokuapp.com/
+    curl http://localhost:4500/
+---------------------------------------------------------------------------------*/

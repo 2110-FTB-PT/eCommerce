@@ -22,11 +22,13 @@ apirouter.use('/', (req, res, next) => {
 apirouter.get('/', (req, res, next) => {
   res.send( {
     name: '/api',
-    message: 'Next available sub-paths: /buyers/me, /coffeebeans, /coffeesets, /tealeaves, /teasets' 
+    message: 'Next available sub-paths: /users/me, /coffeebeans, /tealeaves' 
   }); 
 }); 
 const cbrouter = require('./coffeebeans'); 
 apirouter.use('/coffeebeans', cbrouter); 
+const urouter = require('./users');
+apirouter.use('/users',urouter); 
 
 
 //---error handlers 

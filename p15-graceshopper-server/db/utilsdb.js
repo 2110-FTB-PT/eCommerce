@@ -8,21 +8,19 @@ const client = require('./client');
 
 
 //---definitions 
-
-const _checkDuplicatedName = async (name, table) => {  
+const _checkDuplicatedName = async (table, column, colvalue) => {  
   try { 
     const query = `
-      SELECT name 
-      FROM ${table}; 
+      SELECT ${column} 
+      FROM ${table} 
+      WHERE ${column}='${colvalue}'; 
     `; 
-    const {rows: names} = await client.query(`${query}`); 
-    if (names.length = 0) return;  
-    for (let i=0; i < names.length; i++ ) {
-      const text = names[i].name.toLowerCase(); 
-      if (text === name.toLowerCase() ) { 
-        throw `name: '${name}' has already been existed. A duplication is not accepted.`; 
-      } else return; 
-    } //for
+    const {rows: [results]} = await client.query(`${query}`); 
+    if (results) { 
+      const text = (Object.values(results)[0]).toLowerCase(); 
+      if (text === colvalue.toLowerCase() ) { return true; } 
+    } //if 
+    return false; 
   } catch (error) { throw error; } 
 } //_checkDuplicationName() 
 

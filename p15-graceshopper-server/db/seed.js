@@ -5,31 +5,20 @@ Project-15:  Grace Shopper - eCommerce
 
 const client = require('./client'); 
 const { 
-  addCoffeebeans
+  addCoffeebeans,
+  addUsers, 
+  testDuplication, 
+  testAddPurchases
 } = require('./data'); 
-const { 
-  getCoffeebeans
-} = require('./coffeebeans'); 
 
 
 const dropTables = async () => {
   try { 
     const query = `
-      DROP SEQUENCE IF EXISTS 
-      coffeebeansId,
-      coffeesetsId,
-      tealeavesId,
-      teasetsId
-      CASCADE; 
-
-      DROP TABLE IF EXISTS 
-      buyers_products, 
-      products, 
+      DROP TABLE IF EXISTS  
+      invoices, 
       coffeebeans,
-      coffeesets,
-      tealeaves,
-      teasets,
-      buyers
+      users
       CASCADE; 
     `; 
     await client.query(`${query}`); 
@@ -38,109 +27,78 @@ const dropTables = async () => {
 
 
 const createTables = async () => { 
-  try { 
-    const coffeebeans = ` 
-      CREATE TABLE coffeebeans (
+  const users = ` 
+    CREATE TABLE users (
+      account SERIAL UNIQUE NOT NULL,
+      email VARCHAR(255) UNIQUE PRIMARY KEY, 
+      fullname VARCHAR(255) NOT NULL, 
+      phone VARCHAR(255), 
+      shipaddress VARCHAR(255), 
+      address VARCHAR(255) NOT NULL, 
+      city VARCHAR(255),
+      state VARCHAR(255),
+      zipcode VARCHAR(255) NOT NULL,
+      cardtype VARCHAR(255) NOT NULL,
+      cardnumber VARCHAR(255) NOT NULL,
+      card_exp_mon VARCHAR(255) NOT NULL,
+      card_exp_yr VARCHAR(255) NOT NULL, 
+      card_cvc VARCHAR(255) NOT NULL, 
+      active_account BOOLEAN DEFAULT true,
+      password VARCHAR(255)
+    ); `; 
+  const accountseq = `
+    ALTER SEQUENCE users_account_seq 
+      RESTART WITH 1001; 
+    `; 
+  const coffeebeans = ` 
+    CREATE TABLE coffeebeans (
       id SERIAL PRIMARY KEY, 
       qty INTEGER NOT NULL, 
       sold INTEGER NOT NULL DEFAULT 0, 
-      price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+      price DECIMAL(10,2) NOT NULL CHECK (price >= 0),
       name TEXT UNIQUE NOT NULL, 
       blend TEXT,
       aromas TEXT,
-      imgcode VARCHAR(255) 
+      imgindex INTEGER NOT NULL
     ); `; 
-    const cbseq = `
-      ALTER SEQUENCE coffeebeans_id_seq 
-      RESTART WITH 101; 
+  const cbseq = `
+    ALTER SEQUENCE coffeebeans_id_seq 
+        RESTART WITH 101; 
     `; 
-    const coffeesets = ` 
-      CREATE TABLE coffeesets (
-      id SERIAL PRIMARY KEY,
-      qty INTEGER NOT NULL, 
-      sold INTEGER NOT NULL DEFAULT 0,
-      price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-      name TEXT UNIQUE NOT NULL, 
-      blend TEXT,
-      aromas TEXT,
-      imgcode VARCHAR(255)
-    ); `; 
-    const csseq = `
-      ALTER SEQUENCE coffeesets_id_seq 
-      RESTART WITH 201;
-    `;
-    const tealeaves = ` 
-      CREATE TABLE tealeaves (
-      id SERIAL PRIMARY KEY,
-      qty INTEGER NOT NULL, 
-      sold INTEGER NOT NULL DEFAULT 0,
-      price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-      name TEXT UNIQUE NOT NULL, 
-      blend TEXT,
-      aromas TEXT,
-      imgcode VARCHAR(255)
-    ); `; 
-    const tlseq = `
-      ALTER SEQUENCE tealeaves_id_seq
-      RESTART WITH 301;
-    `;
-    const teasets = ` 
-      CREATE TABLE teasets (
+  const invoices = `
+    CREATE TABLE invoices ( 
       id SERIAL PRIMARY KEY, 
-      qty INTEGER NOT NULL, 
-      sold INTEGER NOT NULL DEFAULT 0,
-      price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-      name TEXT UNIQUE NOT NULL, 
-      blend TEXT,
-      aromas TEXT,
-      imgcode VARCHAR(255)
+      "userAccount" INTEGER REFERENCES users(account) NOT NULL,
+      date DATE NOT NULL,
+      products INTEGER[],
+      itemscount INTEGER, 
+      subtotal DECIMAL(10,2), 
+      tax DECIMAL(10,2), 
+      shipping DECIMAL(10,2), 
+      totalprice DECIMAL(10,2), 
+      cardtype VARCHAR(255) NOT NULL, 
+      cardnumber VARCHAR(255) NOT NULL,
+      card_exp_mon VARCHAR(10) NOT NULL,
+      card_exp_yr VARCHAR(10) NOT NULL, 
+      card_cvc VARCHAR(10) NOT NULL
     ); `; 
-    const tsseq = `
-      ALTER SEQUENCE teasets_id_seq 
-      RESTART WITH 401; 
-    `;
-    const buyers = ` 
-      CREATE TABLE buyers (
-      id SERIAL PRIMARY KEY, 
-      username VARCHAR(255) UNIQUE NOT NULL, 
-      password VARCHAR(255) NOT NULL, 
-      email VARCHAR(255), 
-      location VARCHAR(255)
-    ); `; 
-    const products = `
-      CREATE TABLE products (
-      id SERIAL PRIMARY KEY,
-      itemid INTEGER NOT NULL, 
-      "buyerId" INTEGER REFERENCES buyers(id), 
-      stockdate DATE, 
-      UNIQUE (itemid, "buyerId")
-    ); `;
-
-    await client.query(`
-      ${coffeebeans}; 
-      ${cbseq}; 
-      ${coffeesets};
-      ${csseq}; 
-      ${tealeaves}; 
-      ${tlseq};
-      ${teasets}; 
-      ${tsseq}; 
-      ${buyers}; 
-      ${products}; 
-    `); 
+  try { 
+    await client.query(`${users}; ${accountseq}`); 
+    await client.query(`${coffeebeans}; ${cbseq}`); 
+    await client.query(`${invoices}`); 
   } catch (error) { throw error; } 
 } //createTables() 
 
 
 const rebuildDB = async () => { 
   try { 
-    await dropTables(); console.log('>>> done droptables');
-    await createTables(); console.log('>>> done createtables'); 
-    await addCoffeebeans(); console.log('>>> done addCoffeebeans data'); 
-
-  } catch (error) { 
-    console.log('>>> rebuildb-catch',error); throw error; 
-  } 
+    await dropTables(); console.log('Done droptables');
+    await createTables(); console.log('Done createtables'); 
+    const newusers = await addUsers(); console.log('Done addUsers', newusers);
+    await addCoffeebeans(); console.log('Done addCoffeebeans'); 
+    // const duplication = await testDuplication(); 
+    // const invoices = await testAddPurchases(); 
+  } catch (error) { throw error; } 
 } //rebuildDB() 
 
 

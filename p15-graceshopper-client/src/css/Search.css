@@ -3,3 +3,70 @@ Author:      Jesslyn Bui
 Project-15:  Grace Shopper - eCommerce  
 ----------------------------------------------------------------------------------*/
 
+
+/*---search---*/
+.searchnav {
+  float: right;
+  margin: auto 2%; 
+  width: 95%;
+  display: flex; 
+} 
+.searchform {
+  margin: 15px;  
+  display: flex;
+  flex: 1; 
+} 
+form {
+  margin-block-end: 1em;
+}
+input {
+  flex-grow: 1;
+  border: none; 
+  border-bottom: 1px solid rgba(39, 4, 4, 0.89);
+  padding-left: 10px;
+} 
+.searchicon {
+  display: inline-block; 
+  
+  font-family: 'Material Icons';
+  font-size: 28px;
+  text-transform: none;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+
+  background-color: rgba(48, 22, 4, 0.89);
+  color: white; 
+} 
+.searchicon:hover { 
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+} 
+.creditoffer {
+  margin: 15px 20px 15px 0;
+  padding: 0 15px; 
+  display: inline-block; 
+
+  text-align: center;
+  font-family: 'Stylish', sans-serif; 
+  font-size: 24px;
+  font-weight: bolder; 
+  background-color: goldenrod;   /* rgba(172, 112, 1, 0.938); */
+  border-color: darkgoldenrod; 
+} 
+.creditoffer:hover { 
+  padding: 7px; 
+
+  color: rgb(39, 4, 4); 
+  background-color:navajowhite; 
+
+  border-radius: 3%; 
+  border: 1px solid #ccc;
+} 
+@media (min-width: 768px) { 
+  .horizontal.navlist.shortwidth.fullwidth {
+    display: flex;
+  } 
+  .horizontal.navlist.shortwidth.shortwidth {
+    display: none;
+  } 
+}

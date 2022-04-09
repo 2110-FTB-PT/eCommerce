@@ -3,12 +3,16 @@ Author:      Jesslyn Bui
 Project-15:  Grace Shopper - eCommerce  
 ----------------------------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
 
-.page { 
+.coffeepage { 
   margin: 0 50px; 
   display: grid; 
   grid-template-columns: 25% 25% 25% 25%; 
+
+  font-family: 'Alegreya Sans', sans-serif;
+  box-sizing: border-box;
+  border-bottom: 1px solid #735744; 
 } 
 .item { 
   display: flex;
@@ -24,23 +28,24 @@ Project-15:  Grace Shopper - eCommerce
   display: block; 
   margin: 10px 10px 10px 20px; 
   line-height: 32px; 
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Alegreya Sans', sans-serif;
   color:  #735744;
 }
 .cbinp { 
-  width: 50px;
-  height: 25px; 
-  margin: 0 0 0 5px; 
+  margin: 5px 10px; 
+  width: 60px;
+  height: 30px;  
   padding: 5px; 
   border: 1px solid #735744; 
   border-radius: 3px; 
 
   line-height: normal; 
-  font-size: 16px; 
+  font-family:Verdana, Geneva, Tahoma, sans-serif; 
+  font-size: 20px; 
 } 
 .cbbtn { 
-  margin: 5px 5px 5px 10px; 
-  padding: 10px; 
+  margin: 5px 10px; 
+  padding: 10px 15px; 
 
   background-color: darkgoldenrod; 
   border: 1px solid goldenrod; 
@@ -48,6 +53,7 @@ Project-15:  Grace Shopper - eCommerce
   color: white; 
   
   text-transform: uppercase; 
+  font-size: 18px; 
   font-weight: bold; 
 } 
 .cbbtn:hover { 

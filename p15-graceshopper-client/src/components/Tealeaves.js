@@ -3,16 +3,15 @@ Author:      Jesslyn Bui
 Project-15:  Grace Shopper - eCommerce  
 ----------------------------------------------------------------------------------*/
 
-import React, { useContext } from 'react'; 
-import { IconContext } from 'react-icons'; 
+import React from 'react'; 
 import '../css/Tealeaves.css'; 
 
 
 
 const Tealeaves = () => { 
-  return <>
-    Tea Leaves
-  </>
+  return <main className='teapage'>
+     <h3>Tealeaves product is temporarily out of stock</h3> 
+  </main>
 } //Tealeaves() 
 
 export default Tealeaves; 

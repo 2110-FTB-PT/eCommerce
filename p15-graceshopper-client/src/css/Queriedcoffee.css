@@ -5,8 +5,10 @@ Project-15:  Grace Shopper - eCommerce
 
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
 
-.teapage { 
+.queriedpage { 
   margin: 0 50px; 
+  display: grid; 
+  grid-template-columns: 25% 25% 25% 25%; 
 
   font-family: 'Alegreya Sans', sans-serif;
   box-sizing: border-box;
@@ -38,6 +40,7 @@ Project-15:  Grace Shopper - eCommerce
   border-radius: 3px; 
 
   line-height: normal; 
+  font-family:Verdana, Geneva, Tahoma, sans-serif; 
   font-size: 20px; 
 } 
 .cbbtn { 

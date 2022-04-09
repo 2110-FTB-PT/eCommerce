@@ -4,19 +4,23 @@ Project-15:  Grace Shopper - eCommerce
 ----------------------------------------------------------------------------------*/
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+
 
 * {
   margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
 }
 body {
   min-height: 100%;
   height: auto; 
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Stylish', sans-serif; 
   text-size-adjust: 100%; 
-
+  font-size: 22px; 
+  line-height: 32px; 
+  color:  #735744;
   background-color:floralwhite;   /* #f0ebdc; */
 }
 header { 
@@ -25,3 +29,23 @@ header {
 footer { 
   margin-top: 100px; 
 } 
+
+/*---div---*/
+
+.logmsg { 
+  margin: 20px; 
+  display: table; 
+  vertical-align: middle; 
+} 
+
+.msg .error {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: normal;
+  color: darkblue;
+} 
+
+.error {
+  color: red; 
+} 
+

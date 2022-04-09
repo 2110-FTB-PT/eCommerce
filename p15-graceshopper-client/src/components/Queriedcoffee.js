@@ -8,47 +8,36 @@ import {
   MessageContext,
   ItempixContext, 
   ProductsContext,
-  ShopcartContext
-} from './'; 
-import '../css/Coffeebeans.css'; 
+  ShopcartContext,
+  QueryitemsContext,
+  QuerytermContext, 
+} from '.'; 
+import '../css/Queriedcoffee.css'; 
 
 
-const Coffeebeans  = () => {  
+const Queriedcoffee  = () => {  
   const {message, setMessage} = useContext(MessageContext); 
   const {pics} = useContext(ItempixContext); 
-  const {products, setProducts} = useContext(ProductsContext);  
+  const {products} = useContext(ProductsContext);  
   const {shopcart, setShopcart} = useContext(ShopcartContext); 
+  const {queryitems} = useContext(QueryitemsContext);  
+  const {queryterm} = useContext(QuerytermContext);
   const taxrate = 0.0975; 
   const shipbase = 5.00; 
   const shiprate = 1.00; 
   const lowinventory = 10; 
-
+  
   useEffect( () => {
     setMessage(''); 
   }, []);
 
-  useEffect( async () => { 
-    let items = JSON.parse(localStorage.getItem('coffeebeans')); 
-    if (items) { 
-      for (let i=0; i < items.length; i++) { 
-        if (items[i].addednum) { 
-          items[i].sold = items[i].addednum; 
-          delete items[i].addednum;  
-        } 
-      } 
-      localStorage.removeItem('coffeebeans'); 
-    } else { 
-      items = await getCoffeebeans({signal: AbortCtr.signal});  
-    }
-    setProducts(items); 
-    localStorage.setItem('coffeebeans',JSON.stringify(items)); 
-    localStorage.setItem('cart',JSON.stringify(shopcart)); 
-  }, []);
 
   const handleClick = (e) => { 
-    e.preventDefault();  
+    e.preventDefault(); 
     //collect indexes 
-    const dbindex = Number(e.target.title); //title = index                 
+    const qindex = Number(e.target.title); //title = index    
+    const qItem = queryitems[qindex]; 
+    const dbindex = qItem.dbindex; 
     const selectedItem = products[dbindex];                                 
     selectedItem.dbindex = dbindex;         //add index for later use       
     let cindex = 0, L = shopcart.cartitems.length;                          
@@ -126,31 +115,32 @@ const Coffeebeans  = () => {
     setShopcart(cart); 
     localStorage.setItem('cart', JSON.stringify(shopcart));                    
     products[dbindex] = {...selectedItem}; 
+    queryitems[qindex] = {...selectedItem} 
     localStorage.setItem('coffeebeans', JSON.stringify(products));              
   } //handleClick() 
 
   return <main>
-    <div  style={{color:'blue', textAlign:'center'}}>{message ? <h3>{message}</h3> : null }</div>
+    <div style={{color:'blue', textAlign:'center'}}>{message ? <h3>{message}</h3> : null }</div>
     <div className='coffeepage'>
-      { products.length === 0 ? <p>There are {products.length} lbs coffee beans left in the stock</p> 
-      : <> {products.map( (prodItem, idx) => { 
-        return <section className='item' key={prodItem.id} id={idx}>
-          <img src={pics[prodItem.imgindex]} alt={prodItem.name} /> 
+      { queryitems.length === 0 ? <h3>Found {queryitems.length} lbs of "{queryterm}"</h3> 
+      : <> {queryitems.map( (qItem, idx) => { 
+        return <div className='item' key={qItem.id} id={idx}>
+          <img src={pics[qItem.imgindex]} alt={qItem.name} /> 
           <form className='cbform' title={idx} onSubmit={handleClick}> 
-            <b style={{fontSize:'28px',paddingBottom:'20px'}}>{prodItem.name}</b>
-            <p>Web ID: <span>{prodItem.id}</span></p> 
-            <p>BLEND: {prodItem.blend}</p>
-            <p>AROMAS: {prodItem.aromas}</p> 
-            <p style={{fontFamily:'Georgia'}}>Price: $<span>{prodItem.price}</span>/lb</p>
-            <p style={{color:'blue'}}>{prodItem.note}</p>
+            <b style={{fontSize:'28px',paddingBottom:'20px'}}>{qItem.name}</b>
+            <p>Web ID: <span>{qItem.id}</span></p> 
+            <p>BLEND: {qItem.blend}</p>
+            <p>AROMAS: {qItem.aromas}</p> 
+            <p style={{fontFamily:'Georgia'}}>Price: $<span>{qItem.price}</span>/lb</p>
+            <p style={{color:'blue'}}>{qItem.note}</p>
             <label htmlFor='quantity'>Qty: </label>
-            <input className='cbinp' type='number' min='0' onChange={() => setMessage('')} defaultValue={prodItem.addednum ? prodItem.addednum : null} /> 
+            <input className='cbinp' type='number' min='0' onChange={() => setMessage('')} defaultValue={qItem.addednum ? qItem.addednum : null} /> 
             <button className='cbbtn' type='submit'>Submit</button>
           </form> 
-        </section> }) } 
+        </div> }) } 
       </>}
     </div>
   </main> 
-} //Coffeebeans() 
+} //Queriedcoffee() 
 
-export default Coffeebeans; 
+export default Queriedcoffee; 

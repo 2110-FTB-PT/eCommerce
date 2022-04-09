@@ -20,7 +20,9 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(
   cartReducer,
   applyMiddleware(...middleware)
-)
+); 
+store.dispatch(cartReducer); 
+
 
 ReactDOM.render( 
   <Provider store={store} context={StoreContext}>          

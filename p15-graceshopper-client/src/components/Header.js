@@ -7,54 +7,52 @@ import { Link } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react'; 
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
-import { FaSistrix } from 'react-icons/fa'; 
 import { Logo, Galary } from '../img/'; 
-import { ShopcartContext } from './';
+import { 
+  Search,
+  ShopcartContext, 
+  LoginContext, 
+  AccountContext, 
+  CustomerContext
+} from './';
 import '../css/Header.css'; 
 
 
-const Header = () => { 
+const Header = (props) => { 
+  const checkout = props.checkout; 
   const {shopcart} = useContext(ShopcartContext); 
-  const newtab = () => { 
-    const url = 'https://www.paypal.com/us/digital-wallet/ways-to-pay/buy-now-pay-later'; 
-    const win = window.open(url, '_blank', 'noopener, noreferrer'); 
-    if (win) win.opener = null; 
-    return win; 
-  } //newtab() 
+  const {login} = useContext(LoginContext);
+  const {customer} = useContext(CustomerContext); 
+  const {account, setAccount} = useContext(AccountContext);   
 
-  useEffect( () => { 
-    console.log('shopcart count',shopcart.itemscount); 
-  }, [shopcart]); 
+  useEffect(() => { 
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user) { setAccount(user.account); }
+  },[]); 
 
   return <header>
     <nav className='lognav'>
       <ul className='horizontal navlist'> 
         <Link className='loglink' to='/'>Home</Link> 
         <Link className='loglink' to='/api/coffeebeans'>Coffee Beans</Link> 
-        <Link className='loglink' to='/api/coffeesets'>Luxury Coffee Sets</Link> 
         <Link className='loglink' to='/api/tealeaves'>Loose Leaf Tea</Link> 
-        <Link className='loglink' to='/api/teasets'>Luxury Tea Sets</Link> 
       </ul>
       <ul className='horizontal navlist fullwidth'>
-        <li><Link className='loglink' to='/api/login'>Login/Signup</Link></li>
-        <li><Link className='loglink' to='/api/buyers/me'>Account</Link></li>
-        <li><Link className='loglink cart' to='/shopcart'>
-            <Badge color='secondary' badgeContent={shopcart.itemscount}>
-              <ShoppingCartIcon />{' '}
-            </Badge>         
+        {login && <li><span className='greeting'>Hello, {customer}!</span></li>}
+        {login && <li><Link className='loglink' to={`/api/users/${account}`}>Account# &nbsp; {account}</Link></li>}
+        {login && <li><Link className='loglink' to='/logout' onClick={() => setLogout(true)}>Logout</Link></li>}
+        {!login && <li><Link className='loglink' to='/api/login'>Login/Signup</Link></li>}
+        <li><Link className='cartlink' to='/shopcart'>
+            <Badge className='cart' color='secondary' badgeContent={checkout ? 0 : shopcart.itemscount}>
+              <ShoppingCartIcon />{''}
+            </Badge>      
           </Link></li>  
       </ul>
     </nav> 
     <nav className='galary'> 
       <img className='logo' src={Logo} alt='grace shopper logo' />
       <div>
-        <nav className='searchnav'>
-          <form className='searchform' action='/api/search'>
-            <input type='text' name='searchterm' placeholder='search terms' />
-            <button className='searchicon' type='submit'><FaSistrix /></button> 
-          </form> 
-          <a className='creditoffer' onClick={newtab}>0% Finance | Buy Now, Pay Later</a> 
-        </nav> 
+        <Search />
         <img className='imggalary' src={Galary} alt='tea leaves and coffee beans' />
       </div>
     </nav> 
